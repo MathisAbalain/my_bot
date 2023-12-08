@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <!--
+    <xacro:property name="bloc_avant" value="0.335"/>
+    <xacro:property name="bloc_avant" value="0.265"/>
+    <xacro:property name="bloc_avant" value="0.138"/>
+    <xacro:property name="bloc_avant_masse" value="1.0"/>
+
+    <xacro:property name="bloc_arriere" value="0.335"/>
+    <xacro:property name="bloc_arriere" value="0.265"/>
+    <xacro:property name="bloc_arriere" value="0.138"/>
+    <xacro:property name="bloc_arriere_masse" value="1.0"/>
+
+    <xacro:property name="bloc_droit" value="0.335"/>
+    <xacro:property name="bloc_droit" value="0.265"/>
+    <xacro:property name="bloc_droit" value="0.138"/>
+    <xacro:property name="bloc_droit_masse" value="1.0"/>
+
+    <xacro:property name="bloc_gauche" value="0.335"/>
+    <xacro:property name="bloc_gauche" value="0.265"/>
+    <xacro:property name="bloc_gauche" value="0.138"/>
+    <xacro:property name="bloc_gauche_masse" value="1.0"/>
+
+    <xacro:property name="bloc_central" value="0.335"/>
+    <xacro:property name="bloc_central" value="0.265"/>
+    <xacro:property name="bloc_central" value="0.138"/>
+    <xacro:property name="bloc_central_masse" value="1.0"/>
+
+    -->
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <link name="base_link">
+    
+    </link>
+
+    <!--Chassis-->
+
+    <joint name= "chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.1 0 0"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0.55 0 0.3"/>
+            <geometry>
+                <box size="1.1 1.1 0.6"/>
+            </geometry>
+            <material name="orange"/>
+        </visual>
+    </link>
+
+    <!--bloc avant-->
+
+    <joint name= "bloc_avant_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_avant"/>
+        <origin xyz="1.1 0 0"/>
+    </joint>
+
+    <link name="bloc_avant">
+        <visual>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+    </link>
+
+    <!--bloc arriere-->
+
+    <joint name= "bloc_arriere_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_arriere"/>
+        <origin xyz="-0.8 0 0"/>
+    </joint>
+
+    <link name="bloc_arriere">
+        <visual>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <!--bloc droit-->
+
+    <joint name= "bloc_droit_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_droit"/>
+        <origin xyz="0.15 0.95 0"/>
+    </joint>
+
+    <link name="bloc_droit">
+        <visual>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <!--bloc gauche-->
+
+    <joint name= "bloc_gauche_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_gauche"/>
+        <origin xyz="0.15 -0.95 0"/>
+    </joint>
+
+    <link name="bloc_gauche">
+        <visual>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+</robot>
