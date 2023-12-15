@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <gazebo>
+        <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+            <joint_gauche>roue_gauche_joint</joint_gauche>
+            <joint_droit>roue_droite_joint</joint_droit>
+            <joint_avant>roue_avant_joint</joint_avant>
+            <joint_arriere>roue_arriere_joint</joint_arriere>
+            <wheel_separation></wheel_separation>
+        </plugin>
+    </gazebo>
+
+</robot>

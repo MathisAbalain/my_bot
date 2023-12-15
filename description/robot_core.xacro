@@ -56,6 +56,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="chassis">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
     <!--bloc avant-->
 
     <joint name= "bloc_avant_joint" type="fixed">
@@ -82,6 +86,10 @@
             <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
+
+    <gazebo reference="bloc_avant">
+        <material>Gazebo/White</material>
+    </gazebo>
 
     <!--bloc arriere-->
 
@@ -110,6 +118,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="bloc_arriere">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
     <!--bloc gauche-->
 
     <joint name= "bloc_gauche_joint" type="fixed">
@@ -136,6 +148,10 @@
             <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
+
+    <gazebo reference="bloc_gauche">
+        <material>Gazebo/Black</material>
+    </gazebo>
 
     <!--bloc droit-->
 
@@ -164,6 +180,10 @@
         </xacro:inertial_box>
     </link>
 
+    <gazebo reference="bloc_droit">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
     <!--roue droite-->
 
     <joint name= "roue_droite_joint" type="continuous">
@@ -190,6 +210,10 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+
+    <gazebo reference="roue_droite">
+        <material>Gazebo/Blue</material>
+    </gazebo>
 
     <!--roue gauche-->
 
@@ -218,6 +242,10 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="roue_gauche">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <!--roue avant-->
 
     <joint name= "roue_avant_joint" type="continuous">
@@ -245,6 +273,10 @@
         </xacro:inertial_cylinder>
     </link>
 
+    <gazebo reference="roue_avant">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
     <!--roue arriere-->
 
     <joint name= "roue_arriere_joint" type="continuous">
@@ -271,5 +303,9 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+
+    <gazebo reference="roue_arriere">
+        <material>Gazebo/Blue</material>
+    </gazebo>
 
 </robot>
