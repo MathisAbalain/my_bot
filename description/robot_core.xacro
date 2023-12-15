@@ -2,33 +2,8 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-    <!--
-    <xacro:property name="bloc_avant" value="0.335"/>
-    <xacro:property name="bloc_avant" value="0.265"/>
-    <xacro:property name="bloc_avant" value="0.138"/>
-    <xacro:property name="bloc_avant_masse" value="1.0"/>
+    <xacro:include filename="inertial_macros.xacro" />
 
-    <xacro:property name="bloc_arriere" value="0.335"/>
-    <xacro:property name="bloc_arriere" value="0.265"/>
-    <xacro:property name="bloc_arriere" value="0.138"/>
-    <xacro:property name="bloc_arriere_masse" value="1.0"/>
-
-    <xacro:property name="bloc_droit" value="0.335"/>
-    <xacro:property name="bloc_droit" value="0.265"/>
-    <xacro:property name="bloc_droit" value="0.138"/>
-    <xacro:property name="bloc_droit_masse" value="1.0"/>
-
-    <xacro:property name="bloc_gauche" value="0.335"/>
-    <xacro:property name="bloc_gauche" value="0.265"/>
-    <xacro:property name="bloc_gauche" value="0.138"/>
-    <xacro:property name="bloc_gauche_masse" value="1.0"/>
-
-    <xacro:property name="bloc_central" value="0.335"/>
-    <xacro:property name="bloc_central" value="0.265"/>
-    <xacro:property name="bloc_central" value="0.138"/>
-    <xacro:property name="bloc_central_masse" value="1.0"/>
-
-    -->
 
     <material name="white">
         <color rgba="1 1 1 1" />
@@ -70,6 +45,15 @@
             </geometry>
             <material name="orange"/>
         </visual>
+        <collision>
+            <origin xyz="0.55 0 0.3"/>
+            <geometry>
+                <box size="1.1 1.1 0.6"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="1.1" y="1.1" z="0.6">
+            <origin xyz="0.55 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <!--bloc avant-->
@@ -88,6 +72,15 @@
             </geometry>
             <material name="white"/>
         </visual>
+        <collision>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.8" y="0.8" z="0.6">
+            <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <!--bloc arriere-->
@@ -106,24 +99,15 @@
             </geometry>
             <material name="black"/>
         </visual>
-    </link>
-
-    <!--bloc droit-->
-
-    <joint name= "bloc_droit_joint" type="fixed">
-        <parent link="chassis"/>
-        <child link="bloc_droit"/>
-        <origin xyz="0.15 0.95 0"/>
-    </joint>
-
-    <link name="bloc_droit">
-        <visual>
+        <collision>
             <origin xyz="0.4 0 0.3"/>
             <geometry>
                 <box size="0.8 0.8 0.6"/>
             </geometry>
-            <material name="black"/>
-        </visual>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.8" y="0.8" z="0.6">
+            <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
     </link>
 
     <!--bloc gauche-->
@@ -131,7 +115,7 @@
     <joint name= "bloc_gauche_joint" type="fixed">
         <parent link="chassis"/>
         <child link="bloc_gauche"/>
-        <origin xyz="0.15 -0.95 0"/>
+        <origin xyz="0.15 0.95 0"/>
     </joint>
 
     <link name="bloc_gauche">
@@ -142,6 +126,150 @@
             </geometry>
             <material name="black"/>
         </visual>
+        <collision>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.8" y="0.8" z="0.6">
+            <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <!--bloc droit-->
+
+    <joint name= "bloc_droit_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_droit"/>
+        <origin xyz="0.15 -0.95 0"/>
+    </joint>
+
+    <link name="bloc_droit">
+        <visual>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.8" y="0.8" z="0.6">
+            <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <!--roue droite-->
+
+    <joint name= "roue_droite_joint" type="continuous">
+        <parent link="bloc_droit"/>
+        <child link="roue_droite"/>
+        <origin xyz="0.4 -0.5 0.2" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <link name='roue_droite'>    
+        <visual>  
+            <material name="blue"/>
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </visual>
+        <collision>  
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" radius="0.3" length="0.2">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <!--roue gauche-->
+
+    <joint name= "roue_gauche_joint" type="continuous">
+        <parent link="bloc_gauche"/>
+        <child link="roue_gauche"/>
+        <origin xyz="0.4 0.5 0.2" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <link name='roue_gauche'>    
+        <visual>  
+            <material name="blue"/>
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </visual>
+        <collision>  
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" radius="0.3" length="0.2">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <!--roue avant-->
+
+    <joint name= "roue_avant_joint" type="continuous">
+        <parent link="bloc_avant"/>
+        <child link="roue_avant"/>
+        <origin xyz="0.9 0 0.2" rpy="0 ${pi/2} 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <link name='roue_avant'>    
+        <visual>  
+            <material name="blue"/>
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </visual>
+        <collision>  
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" radius="0.3" length="0.2">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <!--roue arriere-->
+
+    <joint name= "roue_arriere_joint" type="continuous">
+        <parent link="bloc_arriere"/>
+        <child link="roue_arriere"/>
+        <origin xyz="-0.1 0 0.2" rpy="0 ${pi/2} 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <link name='roue_arriere'>    
+        <visual>  
+            <material name="blue"/>
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </visual>
+        <collision>  
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" radius="0.3" length="0.2">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
     </link>
 
 </robot>
